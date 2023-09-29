@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Beheaded Process
+pgrep -f 7-highlander | xargs kill -9
