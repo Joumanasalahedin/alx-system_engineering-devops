@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Script that displays content of a file
+while IFS= read -r line
+do
+	echo "$line" | cut -f 1,3,6 -f ':'
+done < "/etc/passwd"
