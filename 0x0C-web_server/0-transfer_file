@@ -10,6 +10,6 @@ fi
 FILE_PATH="$1";
 IP="$2";
 USERNAME="$3";
-PATH="$4";
+PATH_pk="$4";
 
-scp -o StrictHostKeyChecking=no -i "$PATH" "$FILE_PATH" "${USERNAME}"@"${IP}":~/
+scp -o StrictHostKeyChecking=no -i "$PATH_pk" "$FILE_PATH" "${USERNAME}"@"${IP}":~/
