@@ -8,8 +8,7 @@ echo "ENABLED=1" >> /etc/default/haproxy
 sudo mv /etc/haproxy/haproxy.cfg{,.original}
 sudo touch /etc/haproxy/haproxy.cfg
 
-sudo tee /etc/haproxy/haproxy.cfg > /dev/null << 'EOF'
-global
+printf %s "global
     log 127.0.0.1 local0 notice
     maxconn 2000
     user haproxy
@@ -34,7 +33,7 @@ listen hbnb
     option forwardfor
     server 409195-web-01 54.208.140.192:80 check
     server 409195-web-02 18.210.10.70:80 check
-EOF
+" >> /etc/haproxy/haproxy.cfg
 
 
 sudo service haproxy start
