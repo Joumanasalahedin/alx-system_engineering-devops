@@ -24,7 +24,7 @@ defaults
     timeout client 10000
     timeout server 10000
 
-frontend web-frontend
+listen hbnb
     bind 35.174.209.48:80
     mode http
     stats enable
