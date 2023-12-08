@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 # Debug Nginx to listen on port 80
-echo "server { listen 80; server_name _; location / { root /usr/share/nginx/html; index index.html; } }" > /etc/nginx/sites-available/default
+
+sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 service nginx restart
