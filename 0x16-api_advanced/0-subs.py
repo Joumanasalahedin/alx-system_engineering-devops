@@ -14,7 +14,7 @@ def number_of_subscribers(subreddit):
     user_agent = {'User-agent': 'Google Chrome Version 120.0.6099.217'}
 
     try:
-        response = get(api_url, headers=user_agent)
+        response = get(api_url, headers=user_agent, allow_redirects=False)
         results = response.json()
 
         return results.get('data').get('subscribers')
