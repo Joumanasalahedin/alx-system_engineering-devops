@@ -14,14 +14,18 @@ def top_ten(subreddit):
     user_agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
     params = {'limit': 10}
 
-    response = get(api_url, headers=user_agent, params=params)
+    response = get(api_url, headers=user_agent,
+                   params=params, allow_redirects=False)
+    if response.status_code != 200:
+        print('None')
+
     results = response.json()
 
     try:
-        my_data = results.get('data').get('children')
+        data = results['data']['children']
 
-        for i in my_data:
-            print(i.get('data').get('title'))
+        for post in data:
+            print(post['data']['title'])
 
     except Exception:
-        print("None")
+        print('None')
