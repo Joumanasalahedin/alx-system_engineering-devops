@@ -13,10 +13,9 @@ def number_of_subscribers(subreddit):
     api_url = f"https://www.reddit.com/r/{subreddit}/about.json"
     user_agent = {'User-agent': 'Google Chrome Version 120.0.6099.217'}
 
+    response = get(api_url, headers=user_agent, allow_redirects=False)
+    results = response.json()
     try:
-        response = get(api_url, headers=user_agent, allow_redirects=False)
-        results = response.json()
-
         return results.get('data').get('subscribers')
 
     except Exception:
