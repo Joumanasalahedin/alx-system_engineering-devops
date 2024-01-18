@@ -14,7 +14,7 @@ def number_of_subscribers(subreddit):
     user_agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
 
     response = get(api_url, headers=user_agent, allow_redirects=False)
-    if response.status_code != 200:
+    if response.status_code >= 300:
         return 0
 
     results = response.json()
