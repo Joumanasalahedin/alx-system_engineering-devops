@@ -4,7 +4,7 @@ from requests import get
 
 
 def number_of_subscribers(subreddit):
-    """Queries Reddit API and returns the 
+    """Queries Reddit API and returns the
     number of subscribers for subreddit"""
 
     if subreddit is None or not isinstance(subreddit, str):
