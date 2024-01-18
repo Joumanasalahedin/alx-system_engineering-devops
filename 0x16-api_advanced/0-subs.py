@@ -8,7 +8,7 @@ def number_of_subscribers(subreddit):
     number of subscribers for subreddit"""
 
     api_url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    user_agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
+    user_agent = {'User-agent': 'User-agent'}
 
     response = get(api_url, headers=user_agent, allow_redirects=False)
     if response.status_code >= 300:
