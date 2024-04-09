@@ -1,8 +1,13 @@
 #!/usr/bin/python3
+""" number of subscribers for a given subreddit"""
 import requests
 
 
 def number_of_subscribers(subreddit):
+    """queries the Reddit API and returns number of subscribers"""
+    if subreddit is None or not isinstance(subreddit, str):
+        return 0
+
     url = f'https://www.reddit.com/r/{subreddit}/about.json'
     headers = {'User-Agent': 'subreddit_subscriber_counter/0.1'}
 
