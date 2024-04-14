@@ -4,14 +4,16 @@ from requests import get
 
 
 def top_ten(subreddit):
-    """Queries Reddit API and prints the titles of the first 10 hot posts in a subreddit."""
+    """Queries Reddit API and prints the titles
+    of the first 10 non-stickied hot posts in a subreddit."""
     if not subreddit or not isinstance(subreddit, str):
         print('Invalid subreddit')
         return
 
     api_url = f"https://www.reddit.com/r/{subreddit}/hot.json"
     user_agent = {'User-agent': 'my-app/0.0.1'}
-    params = {'limit': 10}
+    # Request more posts to account for potential stickied posts
+    params = {'limit': 20}
 
     response = get(api_url, headers=user_agent,
                    params=params, allow_redirects=False)
@@ -22,7 +24,13 @@ def top_ten(subreddit):
     try:
         results = response.json()
         data = results['data']['children']
+        count = 0
+
         for post in data:
-            print(post['data']['title'])
+            if not post['data']['stickied']:  # Check if the post is not stickied
+                print(post['data']['title'])
+                count += 1
+                if count == 10:
+                    break
     except Exception as e:
         print(f"Error parsing JSON: {e}")
