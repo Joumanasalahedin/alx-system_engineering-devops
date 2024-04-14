@@ -4,30 +4,26 @@ from requests import get
 
 
 def top_ten(subreddit):
-    """Queries Reddit API and prints the titles of the first 10 non-stickied hot posts in a subreddit."""
-    if not subreddit or not isinstance(subreddit, str):
-        print('Invalid subreddit')
-        return
+    """
+    function that queries the Reddit API and prints the titles of the first
+    10 hot posts listed for a given subreddit
+    """
 
-    api_url = f"https://www.reddit.com/r/{subreddit}/hot.json"
-    user_agent = {'User-agent': 'my-app/0.0.1'}
-    params = {'limit': 20}
+    if subreddit is None or not isinstance(subreddit, str):
+        print("None")
 
-    response = get(api_url, headers=user_agent,
-                   params=params, allow_redirects=False)
-    if response.status_code != 200:
-        return
+    user_agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
+    params = {'limit': 10}
+    url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
+
+    response = get(url, headers=user_agent, params=params)
+    results = response.json()
 
     try:
-        results = response.json()
-        data = results['data']['children']
-        count = 0
+        my_data = results.get('data').get('children')
 
-        for post in data:
-            if not post['data']['stickied']:
-                print(post['data']['title'])
-                count += 1
-                if count == 10:
-                    break
-    except Exception as e:
-        print(f"Error parsing JSON: {e}")
+        for i in my_data:
+            print(i.get('data').get('title'))
+
+    except Exception:
+        print("None")
