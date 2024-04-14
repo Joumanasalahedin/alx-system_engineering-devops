@@ -27,7 +27,7 @@ def top_ten(subreddit):
         count = 0
 
         for post in data:
-            if not post['data']['stickied']:  # Check if the post is not stickied
+            if not post['data']['stickied']:
                 print(post['data']['title'])
                 count += 1
                 if count == 10:
